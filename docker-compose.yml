@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  notificationapiservice:
+    build:
+      context: .
+      dockerfile: Proyecto.NotificationApi.Solution/NotificationApi.Presentation/Dockerfile
+    depends_on:
+      - rabbitmq
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:5003
+    ports:
+      - "5003:5003"
+    networks:
+      - notification_network
+    restart: on-failure
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - notification_network
+
+networks:
+  notification_network:
+    driver: bridge
