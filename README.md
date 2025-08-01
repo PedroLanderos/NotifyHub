@@ -24,16 +24,5 @@ Este servicio forma parte de una arquitectura de **microservicios distribuida**,
 - Microsoft.Extensions.Hosting / Configuration / Logging
 - JSON serialization/deserialization (`System.Text.Json`)
 
----
 
-## 📦 Estructura del Proyecto
 
-```bash
-NotifyHub/
-├── NotificationApi.Presentation/         # Worker principal que escucha eventos desde RabbitMQ
-│   └── Worker.cs                         # Lógica principal de procesamiento de notificaciones
-├── NotificationApi.Infrastructure/       # Lógica de infraestructura (handlers, servicios de correo, etc.)
-│   └── EnviarEmailHandler.cs             # Lógica para enviar correos electrónicos
-├── Test/                                 # Carpeta para pruebas (a implementar)
-├── NotifyHub.sln                         # Archivo de solución
-└── README.md
